@@ -1,0 +1,25 @@
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+    background-color: #192A51;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.container{
+    display: flex;
+    gap: 20px;
+}
+h1{
+    color: white;
+}
+
+.deposit-container{
+    display: none;
+}
+.withdrawal-container{
+    display: none;
+}

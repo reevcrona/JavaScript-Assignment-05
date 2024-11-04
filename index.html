@@ -3,12 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/index.css">
     <title>Document</title>
 </head>
 <body>
-    
+    <h1 class="output"></h1>
+    <div class="container">
+        <button class="get-balance-btn">getBalance</button>
+        <button class="withdrawal-btn">withdrawal</button>
+        <button class="deposit-btn">deposit</button>
+    </div>
 
-
+    <div class="deposit-container">
+        <input class="deposit-amount" type="text">
+        <button class="deposit-confirm-btn">Confirm</button>
+    </div>
+    <div class="withdrawal-container">
+        <input class="withdrawal-amount" type="text">
+        <button class="withdrawal-confirm-btn">Confirm</button>
+    </div>
 
     <script src="scripts/index.js"></script>
 </body>

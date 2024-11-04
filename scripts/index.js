@@ -1,16 +1,79 @@
+const getBalanceBtn = document.querySelector(".get-balance-btn");
+const withdrawalBtn = document.querySelector(".withdrawal-btn");
+const depositBtn = document.querySelector(".deposit-btn");
+
+const outputText = document.querySelector(".output");
+
+const depositContainer = document.querySelector(".deposit-container");
+const depositAmount = document.querySelector(".deposit-amount");
+const depositConfirmBtn = document.querySelector(".deposit-confirm-btn");
+
+const withdrawalContainer = document.querySelector(".withdrawal-container");
+const withdrawalAmount = document.querySelector(".withdrawal-amount");
+const withdrawalConfirmBtn = document.querySelector(".withdrawal-confirm-btn");
+
 const account = {
     accountName:"Jacob Reevcrona",
-    balance:0,
+    balance:100,
     getBalance(){
-        console.log(`You have ${this.balance} in your account`);
+        outputText.textContent = `You have ${this.balance} in your account`;
     },
     deposit(){
-        const amount = parseInt(prompt("How much do you want to deposit"))
-        this.balance += amount;
-    }
+        const amount = parseInt(depositAmount.value);
+        if(amount > 0 ){
+            this.balance += amount;
+        }else{
+            console.log("Sorry 0 is not a valid deposit");
+        }
+    },
+    withdrawal(){
+        const amount = parseInt(withdrawalAmount.value);
+        if(this.balance > 0 && this.balance > amount && amount > 0){
+            this.balance -= amount
+            
+        }else{
+            console.log('Invalid withdrawal amount or insufficient funds.');
+        }
+            
+    }    
 }
+depositBtn.addEventListener("click", () => {
+    getBalanceBtn.style.display = "none";
+    depositBtn.style.display = "none";
+    withdrawalBtn.style.display = "none";
 
-account.deposit();
+    depositContainer.style.display = "block";
+})
+
+depositConfirmBtn.addEventListener("click", () => {
+    account.deposit();
+
+    getBalanceBtn.style.display = "block";
+    depositBtn.style.display = "block";
+    withdrawalBtn.style.display = "block";
+    depositContainer.style.display = "none";
+})
+
+withdrawalBtn.addEventListener("click", () => {
+    getBalanceBtn.style.display = "none";
+    depositBtn.style.display = "none";
+    withdrawalBtn.style.display = "none";
+
+    withdrawalContainer.style.display = "block";
+})
+
+withdrawalConfirmBtn.addEventListener("click", () => {
+    account.withdrawal();
+
+    getBalanceBtn.style.display = "block";
+    depositBtn.style.display = "block";
+    withdrawalBtn.style.display = "block";
+    withdrawalContainer.style.display = "none";
+})
+
+getBalanceBtn.addEventListener("click", () => {
+    account.getBalance();
+})
 
 
 /*
