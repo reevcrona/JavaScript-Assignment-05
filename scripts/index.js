@@ -1,6 +1,8 @@
 const getBalanceBtn = document.querySelector(".get-balance-btn");
 const withdrawalBtn = document.querySelector(".withdrawal-btn");
 const depositBtn = document.querySelector(".deposit-btn");
+const panelContainer = document.querySelector(".container");
+const signOutBtn = document.querySelector(".sign-out-btn");
 
 const outputText = document.querySelector(".output");
 
@@ -29,6 +31,7 @@ const SignInButton = document.querySelector(".sign-in-btn");
 
 
 let accounts = [];
+let activeAccount;
 
 function Account(accountName,pinNumber){
   this.accountName = accountName;
@@ -82,11 +85,31 @@ function findAccount(){
 
   if(targetAccount){
     console.log(`we found your account ${targetAccount.accountName}`)
+    console.log(accounts.indexOf(targetAccount))
+    showPanel();
+    activeAccount = targetAccount;
   }else{
     console.log("We could not find your account");
     console.log(targetAccount)
   }
 }
+
+
+function showPanel(){
+  panelContainer.style.display = "block";
+  loginContainer.style.display = "none";
+}
+
+
+
+
+signOutBtn.addEventListener("click",() => {
+  panelContainer.style.display ="none";
+  signUpPage.style.display = "block";
+  loginBtn.style.display = "block";
+  activeAccount = undefined;
+
+})
 
 
 SignInButton.addEventListener("click",() => {
@@ -123,7 +146,7 @@ depositBtn.addEventListener("click", () => {
 })
 
 depositConfirmBtn.addEventListener("click", () => {
-    account.deposit();
+    activeAccount.deposit();
 
     getBalanceBtn.style.display = "block";
     depositBtn.style.display = "block";
@@ -140,7 +163,7 @@ withdrawalBtn.addEventListener("click", () => {
 })
 
 withdrawalConfirmBtn.addEventListener("click", () => {
-    account.withdrawal();
+    activeAccount.withdrawal();
 
     getBalanceBtn.style.display = "block";
     depositBtn.style.display = "block";
@@ -149,7 +172,7 @@ withdrawalConfirmBtn.addEventListener("click", () => {
 })
 
 getBalanceBtn.addEventListener("click", () => {
-    account.getBalance();
+    activeAccount.getBalance();
 })
 
 
