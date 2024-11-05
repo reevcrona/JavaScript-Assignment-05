@@ -44,6 +44,7 @@ function Account(accountName,pinNumber){
   this.balance = 0;
   this.hasLoggedIn = false;
   this.pinNumber = pinNumber;
+  this.history = [];
   this.getBalance = function(){
     outputText.style.display ="block";
     outputText.textContent = `You have ${this.balance} in your account`;
@@ -53,6 +54,18 @@ function Account(accountName,pinNumber){
     const amount = parseInt(depositAmount.value);
         if(amount > 0 ){
             this.balance += amount;
+            this.history.push({
+              time:new Date().toLocaleString("sv-SE", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+            }),
+            amount:`+${amount}`
+            });
+            console.log(this.history)
         }else{
             console.log("Sorry 0 is not a valid deposit");
         }
@@ -61,7 +74,18 @@ function Account(accountName,pinNumber){
     const amount = parseInt(withdrawalAmount.value);
         if(this.balance > 0 && this.balance > amount && amount > 0){
             this.balance -= amount
-            
+            this.history.push({
+              time:new Date().toLocaleString("sv-SE", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+            }),
+            amount:`-${amount}`
+            });
+            console.log(this.history)
         }else{
             console.log('Invalid withdrawal amount or insufficient funds.');
         }
@@ -86,8 +110,6 @@ function createNewAccount(){
 
   signUpContainer.style.display ="none";
 }
-
-
 
 
 function findAccount(){
@@ -121,6 +143,7 @@ function showPanel(){
   firstTimeDepositContainer.style.display ="none";
   depositContainer.style.display ="none";
 }
+
 
 function firstTimeDeposit(){
   loginContainer.style.display ="none";
