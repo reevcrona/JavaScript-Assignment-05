@@ -2,6 +2,7 @@ const getBalanceBtn = document.querySelector(".get-balance-btn");
 const withdrawalBtn = document.querySelector(".withdrawal-btn");
 const depositBtn = document.querySelector(".deposit-btn");
 const checkUserBtn = document.querySelector(".check-user");
+const checkHistoryBtn = document.querySelector(".check-history");
 const panelContainer = document.querySelector(".container");
 const signOutBtn = document.querySelector(".sign-out-btn");
 
@@ -20,6 +21,7 @@ const firstTimeDepositContainer = document.querySelector(".first-time-deposit-co
 const firstTimeDepositBtn = document.querySelector(".first-time-deposit-btn");
 const firstTimeSkipBtn = document.querySelector(".first-time-skip-btn");
 
+const historyContainer = document.querySelector(".history-container");
 
 const loginBtn = document.querySelector(".login-btn");
 const signUpPage = document.querySelector(".sign-up-page");
@@ -150,7 +152,14 @@ function firstTimeDeposit(){
   firstTimeDepositContainer.style.display ="block";
 }
 
-
+function displayHistory(){
+  historyContainer.innerHTML = "";
+  activeAccount.history.forEach((hist) => {
+    const historyDiv = document.createElement('div');
+    historyDiv.textContent = `${hist.time}: ${hist.amount}`;
+    historyContainer.appendChild(historyDiv);
+  });
+}
 
 
 firstTimeDepositBtn.addEventListener("click",() => {
@@ -163,7 +172,9 @@ firstTimeSkipBtn.addEventListener("click",() => {
 })
 
 
-
+checkHistoryBtn.addEventListener("click",() => {
+  displayHistory();
+})
 
 
 
