@@ -12,31 +12,108 @@ const withdrawalContainer = document.querySelector(".withdrawal-container");
 const withdrawalAmount = document.querySelector(".withdrawal-amount");
 const withdrawalConfirmBtn = document.querySelector(".withdrawal-confirm-btn");
 
-const account = {
-    accountName:"Jacob Reevcrona",
-    balance:100,
-    getBalance(){
-        outputText.textContent = `You have ${this.balance} in your account`;
-    },
-    deposit(){
-        const amount = parseInt(depositAmount.value);
+
+const loginBtn = document.querySelector(".login-btn");
+const signUpPage = document.querySelector(".sign-up-page");
+
+const signUpContainer = document.querySelector(".sign-up-container");
+const loginContainer = document.querySelector(".login-container");
+
+const fullNameInput = document.querySelector(".full-name");
+const pinNumberInput = document.querySelector(".pin-number");
+const signUpBtn = document.querySelector(".sign-up-btn");
+
+const loginFullName = document.querySelector(".login-full-name");
+const loginPinNumber = document.querySelector(".login-pin-number");
+const SignInButton = document.querySelector(".sign-in-btn");
+
+
+let accounts = [];
+
+function Account(accountName,pinNumber){
+  this.accountName = accountName;
+  this.balance = 0;
+  this.pinNumber = pinNumber;
+  this.getBalance = function(){
+    outputText.textContent = `You have ${this.balance} in your account`;
+  }
+  this.deposit = function(){
+    const amount = parseInt(depositAmount.value);
         if(amount > 0 ){
             this.balance += amount;
         }else{
             console.log("Sorry 0 is not a valid deposit");
         }
-    },
-    withdrawal(){
-        const amount = parseInt(withdrawalAmount.value);
+  }
+  this.withdrawal = function(){
+    const amount = parseInt(withdrawalAmount.value);
         if(this.balance > 0 && this.balance > amount && amount > 0){
             this.balance -= amount
             
         }else{
             console.log('Invalid withdrawal amount or insufficient funds.');
         }
-            
-    }    
+  }
 }
+
+function createNewAccount(){
+   const newAccount = new Account(fullNameInput.value,parseInt(pinNumberInput.value));
+   accounts.push(newAccount);
+
+   console.log(accounts)
+
+   fullNameInput.value = "";
+   pinNumberInput.value ="";
+
+   signUpPage.style.display = "block";
+    loginBtn.style.display = "block";
+
+  signUpContainer.style.display ="none";
+}
+
+
+
+
+function findAccount(){
+ const targetAccount = accounts.find((account) => {
+    return account.accountName === loginFullName.value && 
+      account.pinNumber === parseInt(loginPinNumber.value);
+  })
+
+  if(targetAccount){
+    console.log(`we found your account ${targetAccount.accountName}`)
+  }else{
+    console.log("We could not find your account");
+    console.log(targetAccount)
+  }
+}
+
+
+SignInButton.addEventListener("click",() => {
+  findAccount();
+})
+
+signUpPage.addEventListener("click", () => {
+  signUpPage.style.display = "none";
+  loginBtn.style.display = "none";
+
+  signUpContainer.style.display ="block";
+})
+
+loginBtn.addEventListener("click", () => {
+  signUpPage.style.display = "none";
+  loginBtn.style.display = "none";
+
+  loginContainer.style.display = "block";
+
+})
+
+
+signUpBtn.addEventListener("click", () => {
+  createNewAccount();
+})
+
+
 depositBtn.addEventListener("click", () => {
     getBalanceBtn.style.display = "none";
     depositBtn.style.display = "none";
