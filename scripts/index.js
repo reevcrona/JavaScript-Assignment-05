@@ -45,7 +45,9 @@ function Account(accountName,pinNumber){
   this.hasLoggedIn = false;
   this.pinNumber = pinNumber;
   this.getBalance = function(){
+    outputText.style.display ="block";
     outputText.textContent = `You have ${this.balance} in your account`;
+
   }
   this.deposit = function(){
     const amount = parseInt(depositAmount.value);
@@ -65,6 +67,7 @@ function Account(accountName,pinNumber){
         }
   }
   this.getAccountName = function(){
+    userNameText.style.display = "block";
     userNameText.textContent = `Current user ${this.accountName}`
   }
 }
@@ -107,6 +110,8 @@ function findAccount(){
     console.log("We could not find your account");
     console.log(targetAccount)
   }
+  loginFullName.value ="";
+  loginPinNumber.value="";
 }
 
 
@@ -114,12 +119,15 @@ function showPanel(){
   panelContainer.style.display = "block";
   loginContainer.style.display = "none";
   firstTimeDepositContainer.style.display ="none";
+  depositContainer.style.display ="none";
 }
 
 function firstTimeDeposit(){
   loginContainer.style.display ="none";
   firstTimeDepositContainer.style.display ="block";
 }
+
+
 
 
 firstTimeDepositBtn.addEventListener("click",() => {
@@ -132,22 +140,32 @@ firstTimeSkipBtn.addEventListener("click",() => {
 })
 
 
+
+
+
+
 checkUserBtn.addEventListener("click", () => {
   activeAccount.getAccountName();
 })
+
+
 
 signOutBtn.addEventListener("click",() => {
   panelContainer.style.display ="none";
   signUpPage.style.display = "block";
   loginBtn.style.display = "block";
+  outputText.style.display ="none";
+  userNameText.style.display = "none";
   activeAccount = undefined;
 
 })
 
 
+
 SignInButton.addEventListener("click",() => {
   findAccount();
 })
+
 
 signUpPage.addEventListener("click", () => {
   signUpPage.style.display = "none";
@@ -155,6 +173,8 @@ signUpPage.addEventListener("click", () => {
 
   signUpContainer.style.display ="block";
 })
+
+
 
 loginBtn.addEventListener("click", () => {
   signUpPage.style.display = "none";
@@ -171,36 +191,29 @@ signUpBtn.addEventListener("click", () => {
 
 
 depositBtn.addEventListener("click", () => {
-    getBalanceBtn.style.display = "none";
-    depositBtn.style.display = "none";
-    withdrawalBtn.style.display = "none";
-
+    panelContainer.style.display ="none"
+    outputText.style.display ="none";
+    userNameText.style.display = "none";
     depositContainer.style.display = "block";
 })
 
 depositConfirmBtn.addEventListener("click", () => {
     activeAccount.deposit();
 
-    getBalanceBtn.style.display = "block";
-    depositBtn.style.display = "block";
-    withdrawalBtn.style.display = "block";
-    depositContainer.style.display = "none";
+    showPanel();
 })
 
 withdrawalBtn.addEventListener("click", () => {
-    getBalanceBtn.style.display = "none";
-    depositBtn.style.display = "none";
-    withdrawalBtn.style.display = "none";
-
+    panelContainer.style.display ="none";
+    outputText.style.display ="none";
+    userNameText.style.display = "none";
     withdrawalContainer.style.display = "block";
 })
 
 withdrawalConfirmBtn.addEventListener("click", () => {
     activeAccount.withdrawal();
 
-    getBalanceBtn.style.display = "block";
-    depositBtn.style.display = "block";
-    withdrawalBtn.style.display = "block";
+    panelContainer.style.display ="block";
     withdrawalContainer.style.display = "none";
 })
 
