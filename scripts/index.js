@@ -1,10 +1,12 @@
 const getBalanceBtn = document.querySelector(".get-balance-btn");
 const withdrawalBtn = document.querySelector(".withdrawal-btn");
 const depositBtn = document.querySelector(".deposit-btn");
+const checkUserBtn = document.querySelector(".check-user");
 const panelContainer = document.querySelector(".container");
 const signOutBtn = document.querySelector(".sign-out-btn");
 
 const outputText = document.querySelector(".output");
+const userNameText = document.querySelector(".userName");
 
 const depositContainer = document.querySelector(".deposit-container");
 const depositAmount = document.querySelector(".deposit-amount");
@@ -13,6 +15,10 @@ const depositConfirmBtn = document.querySelector(".deposit-confirm-btn");
 const withdrawalContainer = document.querySelector(".withdrawal-container");
 const withdrawalAmount = document.querySelector(".withdrawal-amount");
 const withdrawalConfirmBtn = document.querySelector(".withdrawal-confirm-btn");
+
+const firstTimeDepositContainer = document.querySelector(".first-time-deposit-container");
+const firstTimeDepositBtn = document.querySelector(".first-time-deposit-btn");
+const firstTimeSkipBtn = document.querySelector(".first-time-skip-btn");
 
 
 const loginBtn = document.querySelector(".login-btn");
@@ -36,6 +42,7 @@ let activeAccount;
 function Account(accountName,pinNumber){
   this.accountName = accountName;
   this.balance = 0;
+  this.hasLoggedIn = false;
   this.pinNumber = pinNumber;
   this.getBalance = function(){
     outputText.textContent = `You have ${this.balance} in your account`;
@@ -56,6 +63,9 @@ function Account(accountName,pinNumber){
         }else{
             console.log('Invalid withdrawal amount or insufficient funds.');
         }
+  }
+  this.getAccountName = function(){
+    userNameText.textContent = `Current user ${this.accountName}`
   }
 }
 
@@ -84,10 +94,15 @@ function findAccount(){
   })
 
   if(targetAccount){
-    console.log(`we found your account ${targetAccount.accountName}`)
-    console.log(accounts.indexOf(targetAccount))
-    showPanel();
     activeAccount = targetAccount;
+    if(activeAccount.hasLoggedIn){
+      showPanel();
+    }else{
+      firstTimeDeposit();
+      activeAccount.hasLoggedIn = true;
+    }
+    
+    
   }else{
     console.log("We could not find your account");
     console.log(targetAccount)
@@ -98,10 +113,28 @@ function findAccount(){
 function showPanel(){
   panelContainer.style.display = "block";
   loginContainer.style.display = "none";
+  firstTimeDepositContainer.style.display ="none";
+}
+
+function firstTimeDeposit(){
+  loginContainer.style.display ="none";
+  firstTimeDepositContainer.style.display ="block";
 }
 
 
+firstTimeDepositBtn.addEventListener("click",() => {
+  depositContainer.style.display ="block";
+  firstTimeDepositContainer.style.display ="none"
+})
 
+firstTimeSkipBtn.addEventListener("click",() => {
+  showPanel();
+})
+
+
+checkUserBtn.addEventListener("click", () => {
+  activeAccount.getAccountName();
+})
 
 signOutBtn.addEventListener("click",() => {
   panelContainer.style.display ="none";
