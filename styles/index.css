@@ -154,9 +154,29 @@ h1{
     color: #4285f4;
 }
 
-
-
-
+.password-container-signup{
+    position: relative;
+    width: 100%;
+    max-width: 220px;
+}
+.password-container-login{
+    position: relative;
+    width: 100%;
+    max-width:250px;
+}
+.open-eye-icon{
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    color: white;
+    z-index: 2;
+}
+.open-eye-icon:hover{
+    cursor: pointer;
+}
+#icon-login{
+    top:15px;
+}
 .login-container{
     align-items: center;
     justify-content: center;

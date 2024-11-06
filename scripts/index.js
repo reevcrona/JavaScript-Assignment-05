@@ -40,15 +40,18 @@ const SignInButton = document.querySelector(".sign-in-btn");
 const createAccountLink = document.querySelector(".create-account-link");
 const arrowLeftIcon = document.querySelector(".arrow-left-icon");
 
+const eyeIcon = document.querySelectorAll(".open-eye-icon");
+
+
 
 let accounts = [];
 let activeAccount;
 
-function Account(accountName,pinNumber){
+function Account(accountName,password){
   this.accountName = accountName;
   this.balance = 0;
   this.hasLoggedIn = false;
-  this.pinNumber = pinNumber;
+  this.password = password;
   this.history = [];
   this.getBalance = function(){
     outputText.style.display ="block";
@@ -102,7 +105,7 @@ function Account(accountName,pinNumber){
 }
 
 function createNewAccount(){
-   const newAccount = new Account(fullNameInput.value,parseInt(pinNumberInput.value));
+   const newAccount = new Account(fullNameInput.value,pinNumberInput.value);
    accounts.push(newAccount);
 
    console.log(accounts)
@@ -120,7 +123,7 @@ function createNewAccount(){
 function findAccount(){
  const targetAccount = accounts.find((account) => {
     return account.accountName === loginFullName.value && 
-      account.pinNumber === parseInt(loginPinNumber.value);
+      account.password === loginPinNumber.value;
   })
 
   if(targetAccount){
@@ -190,7 +193,35 @@ checkUserBtn.addEventListener("click", () => {
   activeAccount.getAccountName();
 })
 
+eyeIcon.forEach((icon) => {
+  icon.addEventListener("click", () => {
+    if(icon.id === "icon-login"){
+      togglePassword(loginPinNumber);
+    }else{
+      togglePassword(pinNumberInput);
+    }
+  })
+})
 
+function togglePassword(input){
+
+if(input.type === "password"){
+    input.type = "text";
+    eyeIcon.forEach((icon) => {
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash");
+    })
+    
+}else if (input.type === "text"){
+    input.type ="password";
+    eyeIcon.forEach((icon) => {
+      icon.classList.remove("fa-eye-slash");
+      icon.classList.add("fa-eye");
+    })
+    
+}
+
+}
 
 signOutBtn.addEventListener("click",() => {
   panelContainer.style.display ="none";
