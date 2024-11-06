@@ -37,6 +37,9 @@ const loginFullName = document.querySelector(".login-full-name");
 const loginPinNumber = document.querySelector(".login-pin-number");
 const SignInButton = document.querySelector(".sign-in-btn");
 
+const createAccountLink = document.querySelector(".create-account-link");
+const arrowLeftIcon = document.querySelector(".arrow-left-icon");
+
 
 let accounts = [];
 let activeAccount;
@@ -176,7 +179,12 @@ checkHistoryBtn.addEventListener("click",() => {
   displayHistory();
 })
 
-
+arrowLeftIcon.addEventListener("click", () => {
+  signUpContainer.style.display = "none";
+  signUpPage.style.display = "block";
+  loginBtn.style.display = "block";
+  
+})
 
 checkUserBtn.addEventListener("click", () => {
   activeAccount.getAccountName();
@@ -194,7 +202,10 @@ signOutBtn.addEventListener("click",() => {
 
 })
 
-
+createAccountLink.addEventListener("click",() => {
+    loginContainer.style.display = "none";
+    signUpContainer.style.display ="flex";
+})
 
 SignInButton.addEventListener("click",() => {
   findAccount();

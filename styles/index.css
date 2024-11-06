@@ -99,7 +99,8 @@ h1{
     min-height: 350px;
     background-color: #101B37;
     border-radius: 15px;
-    gap:20px
+    gap:20px;
+    position: relative;
 }
 .sign-up-header{
     color: white;
@@ -133,12 +134,28 @@ h1{
     max-width: 220px;
     border-radius: 5px;
     border: none;
-    background-color: #1F315D;
+    background-color: #4285f4;
     color: white;
 }
 .sign-up-btn:hover{
     cursor: pointer;
 }
+
+.arrow-left-icon{
+    font-size: 2rem;
+    position: absolute;
+    color: white;
+    top: 15px;
+    left: 20px;
+    transition: color 0.3s ease-in-out;
+}
+.arrow-left-icon:hover{
+    cursor: pointer;
+    color: #4285f4;
+}
+
+
+
 
 .login-container{
     align-items: center;
@@ -175,5 +192,14 @@ h1{
     border-radius: 3px;
 }
 .sign-in-btn:hover{
+    cursor: pointer;
+}
+.not-registerd-text{
+    color: white;
+}
+.create-account-link{
+    color: #4285f4;
+}
+.create-account-link:hover{
     cursor: pointer;
 }
