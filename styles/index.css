@@ -33,7 +33,57 @@ h1{
     display: none;
 }
 
+.header-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.bank-logo{
+    width: 55px;
+    height: 55px;
+}
+.bank-header{
+    font-family: "Merriweather Sans", sans-serif;
+    margin: 0;
+    font-size: 3rem;
+}
 
+.action-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+}
 
+.login-btn,.sign-up-page{
+    padding: 0.8em 1.5em;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    border: 2px solid white;
+    position: relative;
+}
+.login-btn:hover,.sign-up-page:hover{
+    cursor: pointer;
+}
 
+.login-btn::before,.sign-up-page::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 0;
+    height: 100%;
+    background-color: #0D1630;
+    z-index: -1;
+    transition: 0.35s ease-out;
 
+}
+.login-btn:hover::before,.sign-up-page:hover::before{
+    width: 100%;
+}
