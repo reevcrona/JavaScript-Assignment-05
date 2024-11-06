@@ -205,7 +205,7 @@ signUpPage.addEventListener("click", () => {
   signUpPage.style.display = "none";
   loginBtn.style.display = "none";
 
-  signUpContainer.style.display ="block";
+  signUpContainer.style.display ="flex";
 })
 
 
