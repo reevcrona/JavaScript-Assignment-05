@@ -139,3 +139,41 @@ h1{
 .sign-up-btn:hover{
     cursor: pointer;
 }
+
+.login-container{
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap:20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-full-name,.login-pin-number{
+    background-color: #0A1124 ;
+    border: none;
+    min-height: 45px;
+    width: 100%;
+    max-width: 250px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+.login-full-name::placeholder,.login-pin-number::placeholder{
+    color: white;
+}
+.person-icon{
+    width: 85px;
+    height: 85px;
+}
+.sign-in-btn{
+    padding: 0.7em 2.2em;
+    font-size: 1.1rem;
+    border: none;
+    background-color:#4285f4;
+    color: white;
+    border-radius: 3px;
+}
+.sign-in-btn:hover{
+    cursor: pointer;
+}
