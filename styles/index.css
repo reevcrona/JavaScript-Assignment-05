@@ -10,8 +10,28 @@ body{
     flex-direction: column;
 }
 .container{
-    display: none;
+    display: flex;
     gap: 20px;
+}
+.card{
+    width: 250px;
+    height: 250px;
+}
+.deposit-card{
+    background-color: #4CAF50;
+}
+.withdrawal-card{
+    background-color: #D32F2F;
+}
+.history-card{
+    background-color: #607D8B;
+}
+.sign-out-card{
+    background-color: #455A64;
+}
+.card-icon{
+    width: 70px;
+    height: 70px;
 }
 h1{
     color: white;
