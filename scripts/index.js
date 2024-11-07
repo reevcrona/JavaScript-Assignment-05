@@ -171,7 +171,7 @@ function displayHistory(){
 
 
 firstTimeDepositBtn.addEventListener("click",() => {
-  depositContainer.style.display ="block";
+  depositContainer.style.display ="flex";
   firstTimeDepositContainer.style.display ="none"
 })
 
@@ -272,7 +272,7 @@ depositCard.addEventListener("click", () => {
     panelContainer.style.display ="none"
     outputText.style.display ="none";
     userNameText.style.display = "none";
-    depositContainer.style.display = "block";
+    depositContainer.style.display = "flex";
 })
 
 depositConfirmBtn.addEventListener("click", () => {
@@ -285,7 +285,7 @@ withdrawalCard.addEventListener("click", () => {
     panelContainer.style.display ="none";
     outputText.style.display ="none";
     userNameText.style.display = "none";
-    withdrawalContainer.style.display = "block";
+    withdrawalContainer.style.display = "flex";
 })
 
 withdrawalConfirmBtn.addEventListener("click", () => {

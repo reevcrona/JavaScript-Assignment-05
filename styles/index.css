@@ -95,9 +95,12 @@ h1{
 
 .deposit-container{
     display: none;
+    flex-direction: column;
+
 }
 .withdrawal-container{
     display: none;
+    flex-direction: column;
 }
 .sign-up-container{
     display: none;
@@ -133,7 +136,9 @@ h1{
     margin-top: 30px;
 }
 
-.login-btn,.sign-up-page,.get-balance-btn,.check-user,.first-time-skip-btn,.first-time-deposit-btn{
+.login-btn,.sign-up-page,.get-balance-btn,.check-user,.first-time-skip-btn,
+.first-time-deposit-btn,.deposit-confirm-btn,.withdrawal-confirm-btn{
+    
     padding: 0.8em 1.5em;
     background-color: transparent;
     color: white;
@@ -161,7 +166,7 @@ h1{
     transition: 0.35s ease-out;
 
 }
-.first-time-deposit-btn::before{
+.first-time-deposit-btn::before,.deposit-confirm-btn::before,.withdrawal-confirm-btn::before{
     content: "";
     position: absolute;
     top: 50%;
@@ -175,7 +180,8 @@ h1{
 }
 .login-btn:hover::before,.sign-up-page:hover::before,
 .get-balance-btn:hover::before,.check-user:hover::before,.first-time-skip-btn:hover::before,
-.first-time-deposit-btn:hover::before{
+.first-time-deposit-btn:hover::before,
+.deposit-confirm-btn:hover::before,.withdrawal-confirm-btn:hover::before{
     width: 100%;
 }
 
@@ -227,8 +233,6 @@ h1{
     font-weight: 700;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
     letter-spacing: 2px;
-
-    
 }
 .full-name,.pin-number{
     background-color: #0A1124 ;
@@ -239,6 +243,7 @@ h1{
     border-radius: 5px;
     color: white;
     text-align: center;
+    font-size: 1.5rem;
 }
 
 .full-name::placeholder,.pin-number::placeholder{
@@ -312,6 +317,7 @@ h1{
     border-radius: 5px;
     color: white;
     text-align: center;
+    font-size: 1.5rem;
 }
 .login-full-name::placeholder,.login-pin-number::placeholder{
     color: white;
@@ -341,5 +347,21 @@ h1{
     cursor: pointer;
 }
 .deposit-container > h2,.withdrawal-container > h2{
-
+    color: white;
+    font-family: "Roboto Slab", serif;
+    font-size: 1.7rem;
+    margin: 0;
+    margin-bottom: 0.2em;
+}
+.deposit-amount,.withdrawal-amount{
+    background-color: #0A1124 ;
+    border: none;
+    min-height: 45px;
+    width: 100%;
+    max-width: 250px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 0.3em;
 }
