@@ -57,7 +57,7 @@ function Account(accountName,password){
   this.history = [];
   this.getBalance = function(){
     outputText.style.display ="block";
-    outputText.textContent = `You have ${this.balance} in your account`;
+    outputText.textContent = `Balance: $${this.balance}`;
 
   }
   this.deposit = function(){
@@ -102,7 +102,7 @@ function Account(accountName,password){
   }
   this.getAccountName = function(){
     userNameText.style.display = "block";
-    userNameText.textContent = `Current user ${this.accountName}`
+    userNameText.textContent = `Current user: ${this.accountName}`
   }
 }
 
@@ -157,7 +157,7 @@ function showPanel(){
 
 function firstTimeDeposit(){
   loginContainer.style.display ="none";
-  firstTimeDepositContainer.style.display ="block";
+  firstTimeDepositContainer.style.display ="flex";
 }
 
 function displayHistory(){
