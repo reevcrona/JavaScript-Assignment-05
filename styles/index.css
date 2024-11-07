@@ -340,3 +340,6 @@ h1{
 .create-account-link:hover{
     cursor: pointer;
 }
+.deposit-container > h2,.withdrawal-container > h2{
+
+}

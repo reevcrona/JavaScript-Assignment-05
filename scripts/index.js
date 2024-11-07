@@ -277,7 +277,7 @@ depositCard.addEventListener("click", () => {
 
 depositConfirmBtn.addEventListener("click", () => {
     activeAccount.deposit();
-
+    depositAmount.value ="";
     showPanel();
 })
 
@@ -290,7 +290,7 @@ withdrawalCard.addEventListener("click", () => {
 
 withdrawalConfirmBtn.addEventListener("click", () => {
     activeAccount.withdrawal();
-
+    withdrawalAmount.value ="";
     panelContainer.style.display ="block";
     withdrawalContainer.style.display = "none";
 })
