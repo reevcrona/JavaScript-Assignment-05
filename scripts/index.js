@@ -1,10 +1,12 @@
 const getBalanceBtn = document.querySelector(".get-balance-btn");
-const withdrawalBtn = document.querySelector(".withdrawal-btn");
-const depositBtn = document.querySelector(".deposit-btn");
 const checkUserBtn = document.querySelector(".check-user");
-const checkHistoryBtn = document.querySelector(".check-history");
+const depositCard = document.querySelector(".deposit-card");
+const withdrawalCard = document.querySelector(".withdrawal-card");
+const historyCard = document.querySelector(".history-card");
+const signOutCard = document.querySelector(".sign-out-card");
+
 const panelContainer = document.querySelector(".container");
-const signOutBtn = document.querySelector(".sign-out-btn");
+
 
 const outputText = document.querySelector(".output");
 const userNameText = document.querySelector(".userName");
@@ -59,7 +61,7 @@ function Account(accountName,password){
 
   }
   this.deposit = function(){
-    const amount = parseInt(depositAmount.value);
+    const amount = parseFloat(depositAmount.value);
         if(amount > 0 ){
             this.balance += amount;
             this.history.push({
@@ -79,7 +81,7 @@ function Account(accountName,password){
         }
   }
   this.withdrawal = function(){
-    const amount = parseInt(withdrawalAmount.value);
+    const amount = parseFloat(withdrawalAmount.value);
         if(this.balance > 0 && this.balance > amount && amount > 0){
             this.balance -= amount
             this.history.push({
@@ -146,7 +148,7 @@ function findAccount(){
 
 
 function showPanel(){
-  panelContainer.style.display = "block";
+  panelContainer.style.display = "flex";
   loginContainer.style.display = "none";
   firstTimeDepositContainer.style.display ="none";
   depositContainer.style.display ="none";
@@ -178,7 +180,7 @@ firstTimeSkipBtn.addEventListener("click",() => {
 })
 
 
-checkHistoryBtn.addEventListener("click",() => {
+historyCard.addEventListener("click",() => {
   displayHistory();
 })
 
@@ -223,7 +225,7 @@ if(input.type === "password"){
 
 }
 
-signOutBtn.addEventListener("click",() => {
+signOutCard.addEventListener("click",() => {
   panelContainer.style.display ="none";
   signUpPage.style.display = "block";
   loginBtn.style.display = "block";
@@ -266,7 +268,7 @@ signUpBtn.addEventListener("click", () => {
 })
 
 
-depositBtn.addEventListener("click", () => {
+depositCard.addEventListener("click", () => {
     panelContainer.style.display ="none"
     outputText.style.display ="none";
     userNameText.style.display = "none";
@@ -279,7 +281,7 @@ depositConfirmBtn.addEventListener("click", () => {
     showPanel();
 })
 
-withdrawalBtn.addEventListener("click", () => {
+withdrawalCard.addEventListener("click", () => {
     panelContainer.style.display ="none";
     outputText.style.display ="none";
     userNameText.style.display = "none";

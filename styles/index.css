@@ -10,12 +10,34 @@ body{
     flex-direction: column;
 }
 .container{
+    display: none;
+    gap: 20px;
+    flex-direction: column;
+}
+.card-container{
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 .card{
     width: 250px;
     height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.card:hover{
+    cursor: pointer;
+}
+.card > h2{
+    color: white;
+    font-family: "Roboto Slab", serif;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    margin: 0;
+    margin-bottom: 0.3em;
 }
 .deposit-card{
     background-color: #4CAF50;
@@ -29,10 +51,15 @@ body{
 .sign-out-card{
     background-color: #455A64;
 }
-.card-icon{
+.deposit-icon{
     width: 70px;
     height: 70px;
 }
+.withdrawal-icon,.history-icon,.sign-out-icon{
+    width: 60px;
+    height: 60px;
+}
+
 h1{
     color: white;
 }
