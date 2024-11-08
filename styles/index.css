@@ -419,5 +419,14 @@ h1{
     font-family: "Roboto Slab", serif;
     text-align: center;
     margin: 0;
-    
+}
+.account-success{
+    display: none;
+    color: white;
+    font-family: "Roboto Slab", serif;
+}
+.successfully-em{
+    color: #388E3C;
+    font-size: 1.7rem;
+    font-weight: 900;
 }

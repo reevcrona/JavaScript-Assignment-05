@@ -48,6 +48,8 @@ const eyeIcon = document.querySelectorAll(".open-eye-icon");
 const signUpError = document.querySelector(".error-sign-up");
 const loginError = document.querySelector(".login-error-message");
 
+const accountSuccessText = document.querySelector(".account-success");
+
 let accounts = [];
 let activeAccount;
 
@@ -120,6 +122,7 @@ function createNewAccount(){
      fullNameInput.value = "";
      pinNumberInput.value ="";
   
+    accountSuccessText.style.display ="block";
      signUpPage.style.display = "block";
       loginBtn.style.display = "block";
   
@@ -147,7 +150,8 @@ function createNewAccount(){
   
         fullNameInput.value = "";
         pinNumberInput.value ="";
-  
+        
+        accountSuccessText.style.display ="block";
         signUpPage.style.display = "block";
           loginBtn.style.display = "block";
   
@@ -329,6 +333,7 @@ SignInButton.addEventListener("click",() => {
 signUpPage.addEventListener("click", () => {
   fullNameInput.value ="";
   pinNumberInput.value ="";
+  accountSuccessText.style.display ="none";
   signUpPage.style.display = "none";
   loginBtn.style.display = "none";
   signUpError.style.display ="none";
@@ -340,7 +345,7 @@ signUpPage.addEventListener("click", () => {
 loginBtn.addEventListener("click", () => {
   signUpPage.style.display = "none";
   loginBtn.style.display = "none";
-
+  accountSuccessText.style.display ="none";
   loginContainer.style.display = "flex";
 
 })
