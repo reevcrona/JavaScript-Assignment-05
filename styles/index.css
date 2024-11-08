@@ -367,26 +367,41 @@ h1{
 }
 .history-container{
     display: none;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
     flex-direction: column;
+    background-color: #0A1124;
+    width: 100%;
+    max-width: 600px;
+    min-height: 700px;
+    border-radius: 15px;
+    padding: 0 20px;
+    margin-bottom: 1em;
 }
 .history-div{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     border-bottom: 2px solid white;
+    width: 100%;
+}
+.history-div:last-child{
+    border-bottom: none;
 }
 .history-time{
     color: white;
+    font-family: "Roboto Slab", serif;
+}
+.history-amount{
+    font-family: "Roboto Slab", serif;
 }
 #history-back-icon{
     display: none;
     font-size: 2rem;
     position: absolute;
     color: white;
-    top:400px;
-    left: 650px;
+    top:200px;
+    left: 550px;
     transition: color 0.3s ease-in-out;
 }
 #history-back-icon:hover{

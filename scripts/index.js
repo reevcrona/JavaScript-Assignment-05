@@ -74,7 +74,7 @@ function Account(accountName,password){
                 minute: "2-digit",
                 second: "2-digit",
             }),
-            amount:`+${amount}`
+            amount:`+ $${amount}`
             });
             console.log(this.history)
         }else{
@@ -94,7 +94,7 @@ function Account(accountName,password){
                 minute: "2-digit",
                 second: "2-digit",
             }),
-            amount:`-${amount}`
+            amount:`- $${amount}`
             });
             console.log(this.history)
         }else{
@@ -165,6 +165,8 @@ function firstTimeDeposit(){
 
 function displayHistory(){
   panelContainer.style.display ="none";
+  userNameText.style.display ="none";
+  outputText.style.display ="none";
   historyContainer.style.display ="flex";
   historyBackIcon.style.display = "block";
   historyContainer.innerHTML = "";
@@ -174,6 +176,7 @@ function displayHistory(){
     const historyTime = document.createElement("h2")
     const historyAmount = document.createElement("h2")
     historyTime.classList.add("history-time");
+    historyAmount.classList.add("history-amount");
     historyTime.textContent = `${hist.time}`;
     historyAmount.textContent = `${hist.amount}`;
     if(historyAmount.textContent[0] === "+"){
