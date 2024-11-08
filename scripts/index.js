@@ -170,26 +170,36 @@ function displayHistory(){
   historyContainer.style.display ="flex";
   historyBackIcon.style.display = "block";
   historyContainer.innerHTML = "";
-  activeAccount.history.forEach((hist) => {
-    const historyDiv = document.createElement("div");
-    historyDiv.classList.add("history-div");
-    const historyTime = document.createElement("h2")
-    const historyAmount = document.createElement("h2")
-    historyTime.classList.add("history-time");
-    historyAmount.classList.add("history-amount");
-    historyTime.textContent = `${hist.time}`;
-    historyAmount.textContent = `${hist.amount}`;
-    if(historyAmount.textContent[0] === "+"){
-      historyAmount.style.color = "green"
-    }else if (historyAmount.textContent[0] === "-"){
-      historyAmount.style.color = "red"
-    }
-    
-    historyDiv.appendChild(historyTime);
-    historyDiv.appendChild(historyAmount);
-    historyContainer.appendChild(historyDiv);
-
-  });
+  
+  if(activeAccount.history.length === 0 ){
+    const emptyMessage = document.createElement("h2");
+    emptyMessage.textContent ="There are currently no transactions to display for this account.";
+    emptyMessage.classList.add("empty-message");
+    historyContainer.appendChild(emptyMessage);
+  }else{
+    activeAccount.history.forEach((hist) => {
+      
+      const historyDiv = document.createElement("div");
+      historyDiv.classList.add("history-div");
+      const historyTime = document.createElement("h2")
+      const historyAmount = document.createElement("h2")
+      historyTime.classList.add("history-time");
+      historyAmount.classList.add("history-amount");
+      historyTime.textContent = `${hist.time}`;
+      historyAmount.textContent = `${hist.amount}`;
+      if(historyAmount.textContent[0] === "+"){
+        historyAmount.style.color = "green"
+      }else if (historyAmount.textContent[0] === "-"){
+        historyAmount.style.color = "red"
+      }
+      
+      historyDiv.appendChild(historyTime);
+      historyDiv.appendChild(historyAmount);
+      historyContainer.appendChild(historyDiv);
+  
+    });
+  }
+  
 }
 
 historyBackIcon.addEventListener("click", () => {
