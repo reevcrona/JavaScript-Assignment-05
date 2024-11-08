@@ -45,7 +45,8 @@ const arrowLeftIcon = document.querySelector(".arrow-left-icon");
 
 const eyeIcon = document.querySelectorAll(".open-eye-icon");
 
-
+const signUpError = document.querySelector(".error-sign-up");
+const loginError = document.querySelector(".login-error-message");
 
 let accounts = [];
 let activeAccount;
@@ -109,48 +110,53 @@ function Account(accountName,password){
 
 function createNewAccount(){
 
-  
-  if(accounts.length === 0){
-    console.log(accounts)
-    const newAccount = new Account(fullNameInput.value,pinNumberInput.value);
-   accounts.push(newAccount);
-
-   fullNameInput.value = "";
-   pinNumberInput.value ="";
-
-   signUpPage.style.display = "block";
-    loginBtn.style.display = "block";
-
-  signUpContainer.style.display ="none";
-  }
-  else{
+  if(fullNameInput.value && pinNumberInput.value){
     
-    let accountExists = false;
-
-    for(let i = 0; i < accounts.length; i++){
-      if(accounts[i].accountName === fullNameInput.value && accounts[i].password === pinNumberInput.value){
-        console.log("Already exists")
-        console.log(accounts)
-        accountExists = true;
-        break;
-      } 
-     }
-     if(!accountExists){
-      console.log("New account")
+    if(accounts.length === 0){
       console.log(accounts)
       const newAccount = new Account(fullNameInput.value,pinNumberInput.value);
-      accounts.push(newAccount);
-
-      fullNameInput.value = "";
-      pinNumberInput.value ="";
-
-      signUpPage.style.display = "block";
-        loginBtn.style.display = "block";
-
-      signUpContainer.style.display ="none";
+     accounts.push(newAccount);
+  
+     fullNameInput.value = "";
+     pinNumberInput.value ="";
+  
+     signUpPage.style.display = "block";
+      loginBtn.style.display = "block";
+  
+    signUpContainer.style.display ="none";
+    }
+    else{
       
+      let accountExists = false;
+  
+      for(let i = 0; i < accounts.length; i++){
+        if(accounts[i].accountName === fullNameInput.value && accounts[i].password === pinNumberInput.value){
+          console.log("Already exists")
+          console.log(accounts)
+          signUpError.style.display ="block";
+          accountExists = true;
+
+          break;
+        } 
+       }
+       if(!accountExists){
+        console.log("New account")
+        console.log(accounts)
+        const newAccount = new Account(fullNameInput.value,pinNumberInput.value);
+        accounts.push(newAccount);
+  
+        fullNameInput.value = "";
+        pinNumberInput.value ="";
+  
+        signUpPage.style.display = "block";
+          loginBtn.style.display = "block";
+  
+        signUpContainer.style.display ="none";
+        
+      }
     }
   }
+  
 
 
   
@@ -178,6 +184,7 @@ function findAccount(){
   }else{
     console.log("We could not find your account");
     console.log(targetAccount)
+    loginError.style.display ="block";
   }
   loginFullName.value ="";
   loginPinNumber.value="";
@@ -308,6 +315,8 @@ signOutCard.addEventListener("click",() => {
 })
 
 createAccountLink.addEventListener("click",() => {
+    loginError.style.display ="none";
+    signUpError.style.display ="none";
     loginContainer.style.display = "none";
     signUpContainer.style.display ="flex";
 })
@@ -318,9 +327,11 @@ SignInButton.addEventListener("click",() => {
 
 
 signUpPage.addEventListener("click", () => {
+  fullNameInput.value ="";
+  pinNumberInput.value ="";
   signUpPage.style.display = "none";
   loginBtn.style.display = "none";
-
+  signUpError.style.display ="none";
   signUpContainer.style.display ="flex";
 })
 
