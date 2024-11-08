@@ -83,7 +83,7 @@ function Account(accountName,password){
   }
   this.withdrawal = function(){
     const amount = parseFloat(withdrawalAmount.value);
-        if(this.balance > 0 && this.balance > amount && amount > 0){
+        if(this.balance > 0 && this.balance >= amount && amount > 0){
             this.balance -= amount
             this.history.push({
               time:new Date().toLocaleString("sv-SE", {
@@ -108,10 +108,12 @@ function Account(accountName,password){
 }
 
 function createNewAccount(){
-   const newAccount = new Account(fullNameInput.value,pinNumberInput.value);
-   accounts.push(newAccount);
 
-   console.log(accounts)
+  
+  if(accounts.length === 0){
+    console.log(accounts)
+    const newAccount = new Account(fullNameInput.value,pinNumberInput.value);
+   accounts.push(newAccount);
 
    fullNameInput.value = "";
    pinNumberInput.value ="";
@@ -120,6 +122,40 @@ function createNewAccount(){
     loginBtn.style.display = "block";
 
   signUpContainer.style.display ="none";
+  }
+  else{
+    
+    let accountExists = false;
+
+    for(let i = 0; i < accounts.length; i++){
+      if(accounts[i].accountName === fullNameInput.value && accounts[i].password === pinNumberInput.value){
+        console.log("Already exists")
+        console.log(accounts)
+        accountExists = true;
+        break;
+      } 
+     }
+     if(!accountExists){
+      console.log("New account")
+      console.log(accounts)
+      const newAccount = new Account(fullNameInput.value,pinNumberInput.value);
+      accounts.push(newAccount);
+
+      fullNameInput.value = "";
+      pinNumberInput.value ="";
+
+      signUpPage.style.display = "block";
+        loginBtn.style.display = "block";
+
+      signUpContainer.style.display ="none";
+      
+    }
+  }
+
+
+  
+
+   
 }
 
 
