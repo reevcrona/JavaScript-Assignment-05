@@ -24,6 +24,7 @@ const firstTimeDepositBtn = document.querySelector(".first-time-deposit-btn");
 const firstTimeSkipBtn = document.querySelector(".first-time-skip-btn");
 
 const historyContainer = document.querySelector(".history-container");
+const historyBackIcon = document.querySelector("#history-back-icon");
 
 const loginBtn = document.querySelector(".login-btn");
 const signUpPage = document.querySelector(".sign-up-page");
@@ -152,6 +153,8 @@ function showPanel(){
   loginContainer.style.display = "none";
   firstTimeDepositContainer.style.display ="none";
   depositContainer.style.display ="none";
+  historyContainer.style.display ="none";
+  historyBackIcon.style.display ="none";
 }
 
 
@@ -161,6 +164,9 @@ function firstTimeDeposit(){
 }
 
 function displayHistory(){
+  panelContainer.style.display ="none";
+  historyContainer.style.display ="flex";
+  historyBackIcon.style.display = "block";
   historyContainer.innerHTML = "";
   activeAccount.history.forEach((hist) => {
     const historyDiv = document.createElement("div");
@@ -183,6 +189,9 @@ function displayHistory(){
   });
 }
 
+historyBackIcon.addEventListener("click", () => {
+  showPanel();
+})
 
 firstTimeDepositBtn.addEventListener("click",() => {
   depositContainer.style.display ="flex";

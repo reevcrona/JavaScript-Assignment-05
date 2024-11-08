@@ -366,7 +366,7 @@ h1{
     margin-bottom: 0.3em;
 }
 .history-container{
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -379,4 +379,17 @@ h1{
 }
 .history-time{
     color: white;
+}
+#history-back-icon{
+    display: none;
+    font-size: 2rem;
+    position: absolute;
+    color: white;
+    top:400px;
+    left: 650px;
+    transition: color 0.3s ease-in-out;
+}
+#history-back-icon:hover{
+    cursor: pointer;
+    color: #4285f4;
 }
