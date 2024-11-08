@@ -163,9 +163,23 @@ function firstTimeDeposit(){
 function displayHistory(){
   historyContainer.innerHTML = "";
   activeAccount.history.forEach((hist) => {
-    const historyDiv = document.createElement('div');
-    historyDiv.textContent = `${hist.time}: ${hist.amount}`;
+    const historyDiv = document.createElement("div");
+    historyDiv.classList.add("history-div");
+    const historyTime = document.createElement("h2")
+    const historyAmount = document.createElement("h2")
+    historyTime.classList.add("history-time");
+    historyTime.textContent = `${hist.time}`;
+    historyAmount.textContent = `${hist.amount}`;
+    if(historyAmount.textContent[0] === "+"){
+      historyAmount.style.color = "green"
+    }else if (historyAmount.textContent[0] === "-"){
+      historyAmount.style.color = "red"
+    }
+    
+    historyDiv.appendChild(historyTime);
+    historyDiv.appendChild(historyAmount);
     historyContainer.appendChild(historyDiv);
+
   });
 }
 

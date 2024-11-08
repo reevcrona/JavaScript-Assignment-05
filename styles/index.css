@@ -365,3 +365,18 @@ h1{
     font-size: 2rem;
     margin-bottom: 0.3em;
 }
+.history-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.history-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid white;
+}
+.history-time{
+    color: white;
+}
