@@ -1,56 +1,95 @@
-const getBalanceBtn = document.querySelector(".get-balance-btn");
-const checkUserBtn = document.querySelector(".check-user");
-const depositCard = document.querySelector(".deposit-card");
-const withdrawalCard = document.querySelector(".withdrawal-card");
-const historyCard = document.querySelector(".history-card");
-const signOutCard = document.querySelector(".sign-out-card");
 
-const panelContainer = document.querySelector(".container");
+//Start page
+
+  const loginBtn = document.querySelector(".login-btn");
+  const signUpPage = document.querySelector(".sign-up-page");
+  const accountSuccessText = document.querySelector(".account-success");
+
+//Start page
+
+//Sign up page
+
+  const signUpContainer = document.querySelector(".sign-up-container");
+  const fullNameInput = document.querySelector(".full-name");
+  const pinNumberInput = document.querySelector(".pin-number");
+  const signUpBtn = document.querySelector(".sign-up-btn");
+  const signUpError = document.querySelector(".error-sign-up");
+  const arrowLeftIcon = document.querySelector(".arrow-left-icon");
+
+//Sign up page
+
+//Login page
+
+  const loginContainer = document.querySelector(".login-container");
+  const loginFullName = document.querySelector(".login-full-name");
+  const loginPinNumber = document.querySelector(".login-pin-number");
+  const SignInButton = document.querySelector(".sign-in-btn");
+  const loginError = document.querySelector(".login-error-message");
+  const createAccountLink = document.querySelector(".create-account-link");
+
+//Login page
 
 
-const outputText = document.querySelector(".output");
-const userNameText = document.querySelector(".userName");
-
-const depositContainer = document.querySelector(".deposit-container");
-const depositAmount = document.querySelector(".deposit-amount");
-const depositConfirmBtn = document.querySelector(".deposit-confirm-btn");
-
-const withdrawalContainer = document.querySelector(".withdrawal-container");
-const withdrawalAmount = document.querySelector(".withdrawal-amount");
-const withdrawalConfirmBtn = document.querySelector(".withdrawal-confirm-btn");
+//First time login
 
 const firstTimeDepositContainer = document.querySelector(".first-time-deposit-container");
 const firstTimeDepositBtn = document.querySelector(".first-time-deposit-btn");
 const firstTimeSkipBtn = document.querySelector(".first-time-skip-btn");
 
-const historyContainer = document.querySelector(".history-container");
-const historyBackIcon = document.querySelector("#history-back-icon");
+//First time login
 
-const loginBtn = document.querySelector(".login-btn");
-const signUpPage = document.querySelector(".sign-up-page");
 
-const signUpContainer = document.querySelector(".sign-up-container");
-const loginContainer = document.querySelector(".login-container");
+//Panel page
 
-const fullNameInput = document.querySelector(".full-name");
-const pinNumberInput = document.querySelector(".pin-number");
-const signUpBtn = document.querySelector(".sign-up-btn");
+  const panelContainer = document.querySelector(".container");
+  const getBalanceBtn = document.querySelector(".get-balance-btn");
+  const checkUserBtn = document.querySelector(".check-user");
+  const depositCard = document.querySelector(".deposit-card");
+  const withdrawalCard = document.querySelector(".withdrawal-card");
+  const historyCard = document.querySelector(".history-card");
+  const signOutCard = document.querySelector(".sign-out-card");
+  const outputText = document.querySelector(".output");
+  const userNameText = document.querySelector(".userName");
 
-const loginFullName = document.querySelector(".login-full-name");
-const loginPinNumber = document.querySelector(".login-pin-number");
-const SignInButton = document.querySelector(".sign-in-btn");
+//Panel page
 
-const createAccountLink = document.querySelector(".create-account-link");
-const arrowLeftIcon = document.querySelector(".arrow-left-icon");
 
-const eyeIcon = document.querySelectorAll(".open-eye-icon");
+//Deposit page
 
-const signUpError = document.querySelector(".error-sign-up");
-const loginError = document.querySelector(".login-error-message");
+  const depositContainer = document.querySelector(".deposit-container");
+  const depositAmount = document.querySelector(".deposit-amount");
+  const depositConfirmBtn = document.querySelector(".deposit-confirm-btn");
 
-const accountSuccessText = document.querySelector(".account-success");
+//Deposit page
 
-const withdrawalArrow = document.querySelector("#withdraw-arrow-left");
+
+//Withdrawal page
+
+  const withdrawalContainer = document.querySelector(".withdrawal-container");
+  const withdrawalAmount = document.querySelector(".withdrawal-amount");
+  const withdrawalConfirmBtn = document.querySelector(".withdrawal-confirm-btn");
+  const withdrawalArrow = document.querySelector("#withdraw-arrow-left");
+
+//Withdrawal page
+
+
+
+//History page
+
+  const historyContainer = document.querySelector(".history-container");
+  const historyBackIcon = document.querySelector("#history-back-icon");
+
+//History page
+
+
+//Other
+
+  const eyeIcon = document.querySelectorAll(".open-eye-icon");
+
+//Other
+
+
+
 
 let accounts = [];
 let activeAccount;
@@ -81,13 +120,11 @@ function Account(accountName,password){
             }),
             amount:`+ $${amount}`
             });
-            console.log(this.history)
             return true;
         }else{
             depositAmount.value ="";
             depositAmount.placeholder ="Not a valid amount"
             depositAmount.classList.add("input-error-placeholder")
-            console.log(depositAmount.value)
             return false;
         }
   }
@@ -106,7 +143,6 @@ function Account(accountName,password){
             }),
             amount:`- $${amount}`
             });
-            console.log(this.history)
             return true;
         }else{
             withdrawalAmount.value="";
@@ -126,7 +162,6 @@ function createNewAccount(){
   if(fullNameInput.value && pinNumberInput.value){
     
     if(accounts.length === 0){
-      console.log(accounts)
       const newAccount = new Account(fullNameInput.value,pinNumberInput.value);
      accounts.push(newAccount);
   
@@ -145,8 +180,6 @@ function createNewAccount(){
   
       for(let i = 0; i < accounts.length; i++){
         if(accounts[i].accountName === fullNameInput.value && accounts[i].password === pinNumberInput.value){
-          console.log("Already exists")
-          console.log(accounts)
           signUpError.style.display ="block";
           accountExists = true;
 
@@ -154,8 +187,6 @@ function createNewAccount(){
         } 
        }
        if(!accountExists){
-        console.log("New account")
-        console.log(accounts)
         const newAccount = new Account(fullNameInput.value,pinNumberInput.value);
         accounts.push(newAccount);
   
@@ -197,8 +228,6 @@ function findAccount(){
     
     
   }else{
-    console.log("We could not find your account");
-    console.log(targetAccount)
     loginError.style.display ="block";
   }
   loginFullName.value ="";
@@ -414,59 +443,3 @@ withdrawalArrow.addEventListener("click", () => {
   showPanel();
   withdrawalAmount.value="";
 })
-/*
-BANK ACCOUNT
-
-REQUIREMENTS
-
-Create an object called `account` that has the following properties:
-
-- `accountName`: should be the data type string.
-  This property should contain the name of the account holder.
-
-- `balance`: should be the data type number.
-  This property should contain the total amount of the account.
-
-- `getBalance`: should be a function.
-  This function should display the total amount of the account to the user.
-
-- `deposit`: also a function.
-  This function should be able to deposit money onto the balance of the account.
-
-- `withdrawal`: also a function.
-  This function should be able to withdraw money from the balance of the account.
-
-- `getAccountName`: function as well.
-  This function should display the account holder's name to the user.
-
-- `accountError`: same as above function!
-  This one is a bit tricky... it's up to you to figure out how or what you should use this for.
-  HINT: it's more a thinking problem than a technical problem :)
-
-EXTRA: `exitAccount`, should be a function.
-This function should exit the account.
-HINT: there are a few different ways to do this; it's up to you which way you choose.
-
-EXTRA = OPTIONAL NOT MANDATORY
-
-Remember that a function is just a value. And if a function is just a value then we can both pass it as a parameter to a function and pass it as a property of an object.
-
-The object should handle all of the functionality (logic).
-
-The `atm()` function should be responsible for showing the user interface and based on the user input show the right menu choice.
-
-HINT:
-These operators could probably be useful in this assignment: 
-- `&&` operator
-- `||` operator
-
-In this assignment, you do not have to create any HTML; you will only output to the console.
-
-To handle one of the potential errors, you can use this built-in method `isNaN()`, this is how you use it:
-
-const variableName = 10;
-isNaN(variableName);
-*/
-
-
-

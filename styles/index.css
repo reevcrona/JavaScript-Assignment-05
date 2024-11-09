@@ -357,9 +357,9 @@ h1{
 .deposit-container > h2,.withdrawal-container > h2{
     color: white;
     font-family: "Roboto Slab", serif;
-    font-size: 1.7rem;
+    font-size: 2rem;
     margin: 0;
-    margin-bottom: 0.2em;
+    margin-bottom: 0.7em;
 }
 .deposit-amount,.withdrawal-amount{
     background-color: #0A1124 ;
@@ -371,7 +371,7 @@ h1{
     color: white;
     text-align: center;
     font-size: 2rem;
-    margin-bottom: 0.3em;
+    margin-bottom: 0.7em;
 }
 .history-container{
     display: none;
