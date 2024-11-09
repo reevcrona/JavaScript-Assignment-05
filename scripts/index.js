@@ -105,8 +105,12 @@ function Account(accountName,password){
             amount:`- $${amount}`
             });
             console.log(this.history)
+            return true;
         }else{
-            console.log('Invalid withdrawal amount or insufficient funds.');
+            withdrawalAmount.value="";
+            withdrawalAmount.placeholder ="Invalid withdrawal amount"
+            withdrawalAmount.classList.add("input-error-placeholder-small");
+            return false;
         }
   }
   this.getAccountName = function(){
@@ -207,6 +211,7 @@ function showPanel(){
   depositContainer.style.display ="none";
   historyContainer.style.display ="none";
   historyBackIcon.style.display ="none";
+  withdrawalContainer.style.display ="none";
 }
 
 
@@ -389,10 +394,14 @@ withdrawalCard.addEventListener("click", () => {
 })
 
 withdrawalConfirmBtn.addEventListener("click", () => {
-    activeAccount.withdrawal();
-    withdrawalAmount.value ="";
-    panelContainer.style.display ="block";
-    withdrawalContainer.style.display = "none";
+    const success = activeAccount.withdrawal();
+    if(success){
+      withdrawalAmount.value ="";
+      withdrawalAmount.classList.remove("input-error-placeholder-small");
+      showPanel();
+    }
+  
+    
 })
 
 getBalanceBtn.addEventListener("click", () => {

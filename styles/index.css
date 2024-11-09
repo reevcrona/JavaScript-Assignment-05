@@ -434,3 +434,7 @@ h1{
     font-size: 1.6rem;
     color: #D50000;
 }
+.input-error-placeholder-small::placeholder{
+    font-size: 1.3rem;
+    color: #D50000;
+}
