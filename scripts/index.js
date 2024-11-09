@@ -50,6 +50,8 @@ const loginError = document.querySelector(".login-error-message");
 
 const accountSuccessText = document.querySelector(".account-success");
 
+const withdrawalArrow = document.querySelector("#withdraw-arrow-left");
+
 let accounts = [];
 let activeAccount;
 
@@ -408,7 +410,10 @@ getBalanceBtn.addEventListener("click", () => {
     activeAccount.getBalance();
 })
 
-
+withdrawalArrow.addEventListener("click", () => {
+  showPanel();
+  withdrawalAmount.value="";
+})
 /*
 BANK ACCOUNT
 

@@ -96,11 +96,15 @@ h1{
 .deposit-container{
     display: none;
     flex-direction: column;
-
+    align-items: center;
 }
 .withdrawal-container{
     display: none;
     flex-direction: column;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    align-items: center;
 }
 .sign-up-container{
     display: none;
@@ -148,7 +152,9 @@ h1{
     border: 2px solid white;
     position: relative;
 }
-.login-btn:hover,.sign-up-page:hover{
+.login-btn:hover,.sign-up-page:hover,.first-time-deposit-btn:hover,.first-time-skip-btn:hover
+,.get-balance-btn:hover,.check-user:hover,.deposit-confirm-btn:hover,.withdrawal-confirm-btn:hover
+{
     cursor: pointer;
 }
 
@@ -406,7 +412,16 @@ h1{
     left: 550px;
     transition: color 0.3s ease-in-out;
 }
-#history-back-icon:hover{
+#withdraw-arrow-left{
+    display: block;
+    font-size: 2rem;
+    position: absolute;
+    color: white;
+    top:5px;
+    left:0px;
+    transition: color 0.3s ease-in-out;
+}
+#history-back-icon:hover,#withdraw-arrow-left:hover{
     cursor: pointer;
     color: #4285f4;
 }
