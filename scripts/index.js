@@ -80,8 +80,13 @@ function Account(accountName,password){
             amount:`+ $${amount}`
             });
             console.log(this.history)
+            return true;
         }else{
-            console.log("Sorry 0 is not a valid deposit");
+            depositAmount.value ="";
+            depositAmount.placeholder ="Not a valid amount"
+            depositAmount.classList.add("input-error-placeholder")
+            console.log(depositAmount.value)
+            return false;
         }
   }
   this.withdrawal = function(){
@@ -364,9 +369,16 @@ depositCard.addEventListener("click", () => {
 })
 
 depositConfirmBtn.addEventListener("click", () => {
-    activeAccount.deposit();
-    depositAmount.value ="";
-    showPanel();
+      const success = activeAccount.deposit();
+      if(success){
+        depositAmount.value ="";
+        depositAmount.placeholder ="Amount";
+        depositAmount.classList.remove("input-error-placeholder")
+        showPanel();
+      }
+    
+    
+  
 })
 
 withdrawalCard.addEventListener("click", () => {

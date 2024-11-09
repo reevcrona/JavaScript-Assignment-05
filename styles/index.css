@@ -415,7 +415,7 @@ h1{
 }
 .error-sign-up,.login-error-message{
     display: none;
-    color: #D50000 ;
+    color: #D50000;
     font-family: "Roboto Slab", serif;
     text-align: center;
     margin: 0;
@@ -429,4 +429,8 @@ h1{
     color: #388E3C;
     font-size: 1.7rem;
     font-weight: 900;
+}
+.input-error-placeholder::placeholder{
+    font-size: 1.6rem;
+    color: #D50000;
 }
