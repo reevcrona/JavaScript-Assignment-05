@@ -1,6 +1,6 @@
 
 //Start page
-
+  const frontPageContainer = document.querySelector(".frontpage-container");
   const loginBtn = document.querySelector(".login-btn");
   const signUpPage = document.querySelector(".sign-up-page");
   const accountSuccessText = document.querySelector(".account-success");
@@ -202,14 +202,7 @@ function createNewAccount(){
       }
     }
   }
-  
-
-
-  
-
-   
 }
-
 
 function findAccount(){
  const targetAccount = accounts.find((account) => {
@@ -233,6 +226,13 @@ function findAccount(){
   loginFullName.value ="";
   loginPinNumber.value="";
 }
+
+
+function toggleContainer(container){
+  const containers = []
+}
+
+
 
 
 function showPanel(){
