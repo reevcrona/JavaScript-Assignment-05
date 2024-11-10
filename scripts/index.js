@@ -98,7 +98,7 @@ toggleContainer(frontPageContainer);
 
 
 // Object constructor function that creates a new Account object.
-// Takes an account name and password as inputs and initializes balance, login status, and transaction history.
+// Takes account name and password from inputs and initializes balance, login status, and transaction history.
 // Provides methods for getting the balance, making deposits and withdrawals, and retrieving the account name.
 
 function Account(accountName,password){
@@ -165,9 +165,16 @@ function Account(accountName,password){
 }
 
 function createNewAccount(){
-
+  // Checks if the input fields for full name and PIN are not empty.
   if(fullNameInput.value && pinNumberInput.value){
     
+    /* 
+      If the accounts array is empty
+      Creates a new Account object using the input field values.
+      Pushes the new account to the accounts array.
+      Clears the input fields and displays a success message.
+      Returns to the front page.
+    */
     if(accounts.length === 0){
       const newAccount = new Account(fullNameInput.value,pinNumberInput.value);
      accounts.push(newAccount);
@@ -178,6 +185,15 @@ function createNewAccount(){
     accountSuccessText.style.display ="block";
      toggleContainer(frontPageContainer);
     }
+    /* 
+        If the accounts array is not empty
+        Loops through existing accounts to check if an account with the same name
+        and password already exists.
+        If a match is found, displays an error message and stops further checks.
+        If no match is found, creates a new Account object, adds it to the accounts array,
+        clears input fields, displays a success message, and returns to the front page.
+    
+    */
     else{
       
       let accountExists = false;
@@ -206,10 +222,31 @@ function createNewAccount(){
 }
 
 function findAccount(){
+
+  /* 
+    Loops through the accounts array to find an account object 
+    where accountName and password match the login input values.
+    If a match is found, it returns the account object to the targetAccount variable.
+    If no match is found, targetAccount will be undefined.
+  */ 
+
  const targetAccount = accounts.find((account) => {
     return account.accountName === loginFullName.value && 
       account.password === loginPinNumber.value;
   })
+
+  /* 
+    If a targetAccount is found
+      Sets activeAccount to the found account.
+      Checks if this account has previously logged in
+      If true, navigates the user to the panel.
+      If false, prompts the user to make a deposit since its their first login,
+      updates the login status, and then hides any login error messages.
+
+
+      If an account was not found it will display an error message.
+ */
+  
 
   if(targetAccount){
     activeAccount = targetAccount;
@@ -245,18 +282,44 @@ function toggleContainer(container){
 
 function displayHistory(){
   
+  /* 
+     Hides the username and balance text.
+
+     Shows the history container and back arrow, 
+     and clears any existing content in the history container.
+
+  */
   userNameText.style.display ="none";
   outputText.style.display ="none";
   toggleContainer(historyContainer)
   historyBackIcon.style.display = "block";
   historyContainer.innerHTML = "";
   
+  /* 
+  
+    Checks if the active accounts history array is empty.
+
+    If empty, displays a message indicating there are no previous transactions.
+    If not empty, iterates through the accounts history array to display each transaction.
+
+  */
   if(activeAccount.history.length === 0 ){
     const emptyMessage = document.createElement("h2");
     emptyMessage.textContent ="There are currently no transactions to display for this account.";
     emptyMessage.classList.add("empty-message");
     historyContainer.appendChild(emptyMessage);
   }else{
+    
+    /* 
+    
+    For each transaction in history
+      Creates a `div` for the transaction, along with `h2` elements for the transaction time and amount.
+      Adds appropriate classes to the elements for styling.
+      Sets the `h2` text content to display the transaction time and amount.
+      Checks the amount if it starts with `+`, sets the text color to green; if it starts with `-`, sets it to red.
+    
+    */
+    
     activeAccount.history.forEach((hist) => {
       
       const historyDiv = document.createElement("div");
@@ -272,6 +335,11 @@ function displayHistory(){
       }else if (historyAmount.textContent[0] === "-"){
         historyAmount.style.color = "red"
       }
+      
+      /* 
+        Appends the time and amount elements to the transaction `div`, 
+        and then appends the `div` to the history container.
+      */
       
       historyDiv.appendChild(historyTime);
       historyDiv.appendChild(historyAmount);
