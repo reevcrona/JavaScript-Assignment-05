@@ -96,6 +96,11 @@ let activeAccount;
 
 toggleContainer(frontPageContainer);
 
+
+// Object constructor function that creates a new Account object.
+// Takes an account name and password as inputs and initializes balance, login status, and transaction history.
+// Provides methods for getting the balance, making deposits and withdrawals, and retrieving the account name.
+
 function Account(accountName,password){
   this.accountName = accountName;
   this.balance = 0;
@@ -238,10 +243,6 @@ function toggleContainer(container){
   container.style.display ="flex";
 }
 
-
-
-
-
 function displayHistory(){
   
   userNameText.style.display ="none";
@@ -319,7 +320,6 @@ eyeIcon.forEach((icon) => {
 })
 
 function togglePassword(input){
-
 if(input.type === "password"){
     input.type = "text";
     eyeIcon.forEach((icon) => {
