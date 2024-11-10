@@ -209,10 +209,12 @@ function findAccount(){
   if(targetAccount){
     activeAccount = targetAccount;
     if(activeAccount.hasLoggedIn){
-      showPanel();
+      toggleContainer(panelContainer)
+      loginError.style.display ="none";
     }else{
-      firstTimeDeposit();
+      toggleContainer(firstTimeDepositContainer)
       activeAccount.hasLoggedIn = true;
+      loginError.style.display ="none";
     }
     
     
@@ -239,26 +241,12 @@ function toggleContainer(container){
 
 
 
-function showPanel(){
-  panelContainer.style.display = "flex";
-  loginContainer.style.display = "none";
-  firstTimeDepositContainer.style.display ="none";
-  depositContainer.style.display ="none";
-  historyContainer.style.display ="none";
-  historyBackIcon.style.display ="none";
-  withdrawalContainer.style.display ="none";
-}
-
-
-function firstTimeDeposit(){
-  toggleContainer(firstTimeDepositContainer);
-}
 
 function displayHistory(){
-  panelContainer.style.display ="none";
+  
   userNameText.style.display ="none";
   outputText.style.display ="none";
-  historyContainer.style.display ="flex";
+  toggleContainer(historyContainer)
   historyBackIcon.style.display = "block";
   historyContainer.innerHTML = "";
   
@@ -294,7 +282,8 @@ function displayHistory(){
 }
 
 historyBackIcon.addEventListener("click", () => {
-  showPanel();
+  toggleContainer(panelContainer)
+  historyBackIcon.style.display ="none";
 })
 
 firstTimeDepositBtn.addEventListener("click",() => {
@@ -302,7 +291,7 @@ firstTimeDepositBtn.addEventListener("click",() => {
 })
 
 firstTimeSkipBtn.addEventListener("click",() => {
-  showPanel();
+  toggleContainer(panelContainer);
 })
 
 
@@ -312,7 +301,7 @@ historyCard.addEventListener("click",() => {
 
 arrowLeftIcon.addEventListener("click", () => {
   toggleContainer(frontPageContainer);
-  console.log("clickd")
+  signUpError.style.display ="none";
 })
 
 checkUserBtn.addEventListener("click", () => {
@@ -350,13 +339,10 @@ if(input.type === "password"){
 }
 
 signOutCard.addEventListener("click",() => {
-  panelContainer.style.display ="none";
-  signUpPage.style.display = "block";
-  loginBtn.style.display = "block";
+  toggleContainer(frontPageContainer);
   outputText.style.display ="none";
   userNameText.style.display = "none";
   activeAccount = undefined;
-
 })
 
 createAccountLink.addEventListener("click",() => {
@@ -378,6 +364,7 @@ signUpPage.addEventListener("click", () => {
 
 loginBtn.addEventListener("click", () => {
   toggleContainer(loginContainer);
+  accountSuccessText.style.display ="none";
 })
 
 
@@ -399,7 +386,7 @@ depositConfirmBtn.addEventListener("click", () => {
         depositAmount.value ="";
         depositAmount.placeholder ="Amount";
         depositAmount.classList.remove("input-error-placeholder")
-        showPanel();
+        toggleContainer(panelContainer);
       }
     
     
@@ -418,7 +405,7 @@ withdrawalConfirmBtn.addEventListener("click", () => {
     if(success){
       withdrawalAmount.value ="";
       withdrawalAmount.classList.remove("input-error-placeholder-small");
-      showPanel();
+      toggleContainer(panelContainer);
     }
   
     
@@ -429,6 +416,6 @@ getBalanceBtn.addEventListener("click", () => {
 })
 
 withdrawalArrow.addEventListener("click", () => {
-  showPanel();
+  toggleContainer(panelContainer);
   withdrawalAmount.value="";
 })
