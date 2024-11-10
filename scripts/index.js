@@ -94,6 +94,8 @@ const firstTimeSkipBtn = document.querySelector(".first-time-skip-btn");
 let accounts = [];
 let activeAccount;
 
+toggleContainer(frontPageContainer);
+
 function Account(accountName,password){
   this.accountName = accountName;
   this.balance = 0;
@@ -169,10 +171,7 @@ function createNewAccount(){
      pinNumberInput.value ="";
   
     accountSuccessText.style.display ="block";
-     signUpPage.style.display = "block";
-      loginBtn.style.display = "block";
-  
-    signUpContainer.style.display ="none";
+     toggleContainer(frontPageContainer);
     }
     else{
       
@@ -192,12 +191,9 @@ function createNewAccount(){
   
         fullNameInput.value = "";
         pinNumberInput.value ="";
-        
+        signUpError.style.display ="none";
         accountSuccessText.style.display ="block";
-        signUpPage.style.display = "block";
-          loginBtn.style.display = "block";
-  
-        signUpContainer.style.display ="none";
+        toggleContainer(frontPageContainer);
         
       }
     }
@@ -229,7 +225,15 @@ function findAccount(){
 
 
 function toggleContainer(container){
-  const containers = []
+  const containers = [loginContainer,firstTimeDepositContainer,panelContainer,depositContainer
+    ,withdrawalContainer,historyContainer,signUpContainer,frontPageContainer
+  ];
+
+  containers.forEach((item) => {
+    item.style.display = "none";
+  })
+
+  container.style.display ="flex";
 }
 
 
@@ -247,8 +251,7 @@ function showPanel(){
 
 
 function firstTimeDeposit(){
-  loginContainer.style.display ="none";
-  firstTimeDepositContainer.style.display ="flex";
+  toggleContainer(firstTimeDepositContainer);
 }
 
 function displayHistory(){
@@ -295,8 +298,7 @@ historyBackIcon.addEventListener("click", () => {
 })
 
 firstTimeDepositBtn.addEventListener("click",() => {
-  depositContainer.style.display ="flex";
-  firstTimeDepositContainer.style.display ="none"
+  toggleContainer(depositContainer);
 })
 
 firstTimeSkipBtn.addEventListener("click",() => {
@@ -309,10 +311,8 @@ historyCard.addEventListener("click",() => {
 })
 
 arrowLeftIcon.addEventListener("click", () => {
-  signUpContainer.style.display = "none";
-  signUpPage.style.display = "block";
-  loginBtn.style.display = "block";
-  
+  toggleContainer(frontPageContainer);
+  console.log("clickd")
 })
 
 checkUserBtn.addEventListener("click", () => {
@@ -360,10 +360,7 @@ signOutCard.addEventListener("click",() => {
 })
 
 createAccountLink.addEventListener("click",() => {
-    loginError.style.display ="none";
-    signUpError.style.display ="none";
-    loginContainer.style.display = "none";
-    signUpContainer.style.display ="flex";
+    toggleContainer(signUpContainer);
 })
 
 SignInButton.addEventListener("click",() => {
@@ -374,21 +371,13 @@ SignInButton.addEventListener("click",() => {
 signUpPage.addEventListener("click", () => {
   fullNameInput.value ="";
   pinNumberInput.value ="";
-  accountSuccessText.style.display ="none";
-  signUpPage.style.display = "none";
-  loginBtn.style.display = "none";
-  signUpError.style.display ="none";
-  signUpContainer.style.display ="flex";
+  toggleContainer(signUpContainer);
 })
 
 
 
 loginBtn.addEventListener("click", () => {
-  signUpPage.style.display = "none";
-  loginBtn.style.display = "none";
-  accountSuccessText.style.display ="none";
-  loginContainer.style.display = "flex";
-
+  toggleContainer(loginContainer);
 })
 
 
@@ -398,10 +387,10 @@ signUpBtn.addEventListener("click", () => {
 
 
 depositCard.addEventListener("click", () => {
-    panelContainer.style.display ="none"
     outputText.style.display ="none";
     userNameText.style.display = "none";
-    depositContainer.style.display = "flex";
+    toggleContainer(depositContainer)
+    
 })
 
 depositConfirmBtn.addEventListener("click", () => {
@@ -418,10 +407,10 @@ depositConfirmBtn.addEventListener("click", () => {
 })
 
 withdrawalCard.addEventListener("click", () => {
-    panelContainer.style.display ="none";
     outputText.style.display ="none";
     userNameText.style.display = "none";
-    withdrawalContainer.style.display = "flex";
+    toggleContainer(withdrawalContainer);
+    
 })
 
 withdrawalConfirmBtn.addEventListener("click", () => {

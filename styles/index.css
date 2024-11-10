@@ -455,3 +455,7 @@ h1{
     font-size: 1.3rem;
     color: #D50000;
 }
+.frontpage-container{
+    display: flex;
+    flex-direction: column;
+}
